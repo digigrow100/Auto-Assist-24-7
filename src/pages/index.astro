@@ -2,6 +2,10 @@
 import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import nightDayImg from '../assets/images/11-technician-sunset.webp';
+import recoveryImg from '../assets/images/02-car-loading-recovery-truck.webp';
+import jumpStartImg from '../assets/images/03-jumpstart-diagnostics.webp';
+import tyresImg from '../assets/images/04-mobile-tyre-fitting.webp';
+import heroBannerImg from '../assets/images/09-motorway-recovery-dusk.webp';
 
 const services = [
   {
@@ -12,6 +16,8 @@ const services = [
     text: 'text-primary-container',
     hoverText: 'group-hover:text-primary-container',
     glow: 'bg-primary-container/10',
+    img: recoveryImg,
+    alt: 'Close-up of a modern flatbed vehicle recovery truck loading a premium saloon onto hydraulic tilt-tray ramps at night.',
   },
   {
     icon: 'battery_charging_full',
@@ -21,6 +27,8 @@ const services = [
     text: 'text-secondary-fixed-dim',
     hoverText: 'group-hover:text-secondary-fixed-dim',
     glow: 'bg-secondary-fixed-dim/10',
+    img: jumpStartImg,
+    alt: 'Automotive technician using a digital battery analyzer and jump pack on a modern hybrid car engine bay.',
   },
   {
     icon: 'tire_repair',
@@ -30,6 +38,8 @@ const services = [
     text: 'text-tertiary-fixed',
     hoverText: 'group-hover:text-tertiary-fixed',
     glow: 'bg-tertiary-fixed/10',
+    img: tyresImg,
+    alt: 'Mobile tyre technician replacing a roadside tyre beside a fully equipped mobile workshop van at night.',
   },
 ];
 
@@ -110,6 +120,21 @@ const reviews = [
           </a>
         </div>
 
+        <div class="relative w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl mt-space-md">
+          <Image
+            src={heroBannerImg}
+            alt="A yellow and white flatbed recovery truck on a British motorway hard shoulder at dusk, with a technician in high-visibility gear securing a broken down car."
+            width={800}
+            height={576}
+            quality={70}
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+            class="w-full h-56 md:h-72 object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest/60 via-transparent to-transparent"></div>
+        </div>
+
         <div class="mt-space-md pt-space-lg border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-space-lg text-on-surface-variant font-label-sm text-label-sm uppercase">
           <span class="flex items-center gap-space-xs">
             <span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">check</span> Zero Subscription Lock-In
@@ -123,17 +148,6 @@ const reviews = [
         </div>
       </div>
     </section>
-
-    <!-- 2. MOVING MARQUEE -->
-    <div class="w-full overflow-hidden bg-surface-container-low py-space-md relative shadow-[inset_0_1px_0_rgba(255,255,255,0.05),inset_0_-1px_0_rgba(255,255,255,0.05)] marquee-container">
-      <div class="inline-flex whitespace-nowrap motion-safe:animate-[marquee_24s_linear_infinite] hover:[animation-play-state:paused] items-center gap-space-xl">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <span class={`${i % 2 === 0 ? 'text-primary-container drop-shadow-[0_0_8px_rgba(0,242,254,0.4)]' : 'text-secondary-fixed-dim drop-shadow-[0_0_8px_rgba(0,255,135,0.4)]'} font-headline-md text-headline-md uppercase tracking-wider`}>
-            24/7 SUPPORT • VEHICLE RECOVERY • JUMP START • MOBILE TYRES • RAPID DISPATCH • DIRECT DISPATCH •
-          </span>
-        ))}
-      </div>
-    </div>
 
     <!-- 3. SERVICES TEASER -->
     <section class="relative w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin py-space-2xl z-10" id="services">
@@ -150,21 +164,37 @@ const reviews = [
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
         {services.map((service) => (
-          <a href="/services" class="group relative flex flex-col gap-space-md p-space-lg rounded-xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 shadow-xl overflow-hidden">
-            <div class={`absolute -right-10 -top-10 w-40 h-40 rounded-full ${service.glow} blur-3xl pointer-events-none`}></div>
-            <div class="relative z-10 flex items-center justify-between">
-              <div class={`w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center ${service.text}`}>
-                <span class="material-symbols-outlined text-[26px]">{service.icon}</span>
+          <a href="/services" class="group flex flex-col rounded-xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 shadow-xl overflow-hidden">
+            <div class="h-48 w-full relative">
+              <Image
+                src={service.img}
+                alt={service.alt}
+                width={800}
+                height={600}
+                quality={70}
+                loading="lazy"
+                decoding="async"
+                class="absolute inset-0 w-full h-full object-cover"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-surface-container via-surface-container/10 to-transparent"></div>
+              <div class="absolute top-space-sm left-space-sm">
+                <span class={`px-space-sm py-space-xs rounded bg-surface-container-lowest/80 backdrop-blur font-label-sm text-label-sm ${service.text} uppercase`}>
+                  {service.tag}
+                </span>
               </div>
-              <span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">{service.tag}</span>
+              <div class={`absolute bottom-space-sm right-space-sm w-10 h-10 rounded-lg bg-surface-container-lowest/80 backdrop-blur flex items-center justify-center ${service.text}`}>
+                <span class="material-symbols-outlined text-[22px]">{service.icon}</span>
+              </div>
             </div>
-            <div class="relative z-10">
-              <h3 class={`text-on-surface font-headline-md text-headline-md mb-space-xs ${service.hoverText} transition-colors`}>{service.title}</h3>
-              <p class="text-on-surface-variant font-body-sm text-body-sm">{service.desc}</p>
-            </div>
-            <div class="relative z-10 pt-space-sm mt-auto flex items-center gap-space-xs font-label-lg text-label-lg text-primary">
-              <span>Learn more</span>
-              <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            <div class="flex flex-col flex-1 gap-space-md p-space-lg">
+              <div>
+                <h3 class={`text-on-surface font-headline-md text-headline-md mb-space-xs ${service.hoverText} transition-colors`}>{service.title}</h3>
+                <p class="text-on-surface-variant font-body-sm text-body-sm">{service.desc}</p>
+              </div>
+              <div class="pt-space-sm mt-auto flex items-center gap-space-xs font-label-lg text-label-lg text-primary">
+                <span>Learn more</span>
+                <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
             </div>
           </a>
         ))}
@@ -316,17 +346,6 @@ const reviews = [
     </section>
   </div>
 </Layout>
-
-<style>
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-</style>
 
 <script>
   const track = document.getElementById('review-track');

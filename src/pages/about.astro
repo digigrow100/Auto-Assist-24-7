@@ -1,17 +1,20 @@
 ---
-import { Image } from 'astro:assets';
+import { Image, getImage } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
 import heroImg from '../assets/images/01-recovery-motorway-night.webp';
 import recoveryCardImg from '../assets/images/02-car-loading-recovery-truck.webp';
 import jumpStartCardImg from '../assets/images/03-jumpstart-diagnostics.webp';
 import tyresCardImg from '../assets/images/04-mobile-tyre-fitting.webp';
 import statementImg from '../assets/images/05-dispatch-tablet.webp';
+
+const heroPreload = await getImage({ src: heroImg, width: 1600, height: 900, quality: 70 });
 ---
 
 <Layout
   title="About Us | Auto Assist 24/7"
   description="Auto Assist 24/7 provides dependable, pay-as-you-go emergency roadside assistance for British drivers facing breakdowns, depleted batteries, and tyre failures — without binding annual contracts."
   currentPath="/about"
+  preloadImage={heroPreload.src}
 >
   <div class="flex flex-col w-full">
     <div class="pointer-events-none fixed inset-0 z-0 transition-opacity duration-500 opacity-70" id="ambient-spotlight"></div>

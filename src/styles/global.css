@@ -2,6 +2,41 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+  Self-hosted fonts (latin subset, pulled from Google Fonts' own CDN so the
+  files are byte-identical). Loading these from our own origin instead of a
+  render-blocking cross-origin <link rel="stylesheet"> to fonts.googleapis.com
+  removes two extra DNS/TLS round trips from the critical rendering path and
+  the JS "swap stylesheet on load" trick that came with it.
+
+  Inter and Plus Jakarta Sans are true variable fonts (confirmed via their
+  fvar table), so one file each covers the full weight range we use via the
+  font-weight range syntax below — no need for a file per weight.
+*/
+@font-face {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url('/fonts/inter-latin.woff2') format('woff2-variations'), url('/fonts/inter-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 200 800;
+  font-display: swap;
+  src: url('/fonts/plusjakartasans-latin.woff2') format('woff2-variations'), url('/fonts/plusjakartasans-latin.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/material-symbols-outlined.woff') format('woff');
+}
+
 @layer base {
   *,
   *::before,
@@ -18,20 +53,19 @@
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
-    /* Belt-and-braces: nothing on this site should ever need horizontal
-       scroll, so guard against any future overflow regression. Setting
-       overflow-y explicitly too avoids a Safari/iOS quirk where only
-       declaring overflow-x can end up blocking vertical scroll. */
-    overflow-x: hidden;
-    overflow-y: auto;
   }
 
   body {
     min-height: 100vh;
-    overscroll-behavior: none;
     -webkit-font-smoothing: antialiased;
+    /* Guard against horizontal overflow regressions. Deliberately set on
+       body only (not html) and without touching overflow-y: redundant
+       overflow-y rules on both html and body create two nested scroll
+       containers, which is a known trigger for WebKit/Safari to lose
+       track of which one should receive scroll/touch input and end up
+       not scrolling at all. Leaving overflow-y at its default (visible)
+       keeps scrolling on the single, native document scroller. */
     overflow-x: hidden;
-    overflow-y: auto;
   }
 
   /* Material Symbols renders as a ligature word (e.g. "call") until the
@@ -40,13 +74,24 @@
      connections. Clip it to the intended icon size so layout never
      shifts or overflows during font load. */
   .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     width: 1em;
     height: 1em;
     overflow: hidden;
-    white-space: nowrap;
     flex-shrink: 0;
   }
 
