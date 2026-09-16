@@ -18,20 +18,19 @@
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
-    /* Belt-and-braces: nothing on this site should ever need horizontal
-       scroll, so guard against any future overflow regression. Setting
-       overflow-y explicitly too avoids a Safari/iOS quirk where only
-       declaring overflow-x can end up blocking vertical scroll. */
-    overflow-x: hidden;
-    overflow-y: auto;
   }
 
   body {
     min-height: 100vh;
-    overscroll-behavior: none;
     -webkit-font-smoothing: antialiased;
+    /* Guard against horizontal overflow regressions. Deliberately set on
+       body only (not html) and without touching overflow-y: redundant
+       overflow-y rules on both html and body create two nested scroll
+       containers, which is a known trigger for WebKit/Safari to lose
+       track of which one should receive scroll/touch input and end up
+       not scrolling at all. Leaving overflow-y at its default (visible)
+       keeps scrolling on the single, native document scroller. */
     overflow-x: hidden;
-    overflow-y: auto;
   }
 
   /* Material Symbols renders as a ligature word (e.g. "call") until the
