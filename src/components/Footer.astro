@@ -1,4 +1,7 @@
 ---
+import { Image } from 'astro:assets';
+import logo from '../assets/images/auto-assist-247-logo.webp';
+
 interface Props {
   currentPath: string;
 }
@@ -24,10 +27,8 @@ const serviceLinks = [
   <div class="w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin py-space-xl">
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter">
       <div class="lg:col-span-5 flex flex-col gap-space-md">
-        <div class="flex items-center gap-space-xs">
-          <span class="text-primary font-headline-sm text-headline-sm uppercase tracking-tight">
-            AUTO ASSIST <span class="text-primary-container font-headline-sm text-headline-sm">24/7</span>
-          </span>
+        <div class="flex items-center">
+          <Image src={logo} alt="Auto Assist 24/7" width={150} height={60} class="h-12 w-auto" loading="lazy" />
         </div>
         <p class="text-on-surface-variant font-body-md text-body-md max-w-sm">
           24/7 emergency roadside assistance, recovery, jump start, and mobile tyre fitting across Great Britain.

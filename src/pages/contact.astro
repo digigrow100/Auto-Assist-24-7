@@ -1,5 +1,8 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import intakeImg from '../assets/images/09-motorway-recovery-dusk.webp';
+import mapImg from '../assets/images/10-uk-motorway-interchange.webp';
 ---
 
 <Layout
@@ -207,11 +210,11 @@ import Layout from '../layouts/Layout.astro';
 
           <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-surface-container-low group">
             <div class="relative w-full h-72">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH57O6rDARrTsn9syDEagGsUSzM-E3bfduIfI0IAwGy3wDEzLUCcdPnzbxo0IKtZYE4Ry5FCXeMRTa0Vv8yGfxXgnxibQLZ_cEx9T3NLNm4TOPJduT6P-wgwgeOAKzGEs7glaeeQVIu5NpZWNdcl2qYr1bnsDbJtEvVkuy0sjHgYFmgCID8J_B3coPg4jwXAOpUlBtPAK458DEDGKwn6raAa1lH62vaism_67-4ocLsiTEYioRzXXLAQ"
+              <Image
+                src={intakeImg}
                 alt="A yellow and white flatbed recovery truck on a British motorway hard shoulder at dusk, with a technician in high-visibility gear securing a broken down car."
-                width="800"
-                height="576"
+                width={800}
+                height={576}
                 loading="lazy"
                 decoding="async"
                 class="absolute inset-0 w-full h-full object-cover"
@@ -410,11 +413,11 @@ import Layout from '../layouts/Layout.astro';
         <div class="lg:col-span-6 flex flex-col gap-space-sm">
           <div class="relative rounded-2xl overflow-hidden shadow-2xl bg-surface-container-low">
             <div class="relative w-full h-80">
-              <img
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2tcomkwqD7FoONN3KL2XKgzsvwPBVtKF35IgRIdAoen_iRuSTG-BcyiffwNRMnKmPrCufQ8MzhdE7GMpB3QBCy13zSyd4PLSqMkZ5sVW6c-SDmdP7SiM6uEFlNjHtNt8EDxG8yFYzHbldeo2omcT9ByerzskhSFlYL03JKwwiEVDDoDOXWNsO-3tDdQhTNUGHhEa8yuOTad7CS-vwA96R6NhDsIbDD1RgyA_EGr_TnYt0Aw_Un6ibeQ"
+              <Image
+                src={mapImg}
                 alt="Map view of the Birmingham Interchange near the M42 and M6 motorways, UK."
-                width="800"
-                height="320"
+                width={800}
+                height={320}
                 loading="lazy"
                 decoding="async"
                 class="absolute inset-0 w-full h-full object-cover"

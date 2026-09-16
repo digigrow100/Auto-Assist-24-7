@@ -1,5 +1,7 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import nightDayImg from '../assets/images/11-technician-sunset.webp';
 
 const services = [
   {
@@ -211,11 +213,11 @@ const reviews = [
     <section class="relative w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin py-space-2xl z-10">
       <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-surface-container">
         <div class="relative w-full h-[420px] md:h-[540px]">
-          <img
-            src="https://lh3.googleusercontent.com/aida/AEtjO1UWzc6tC2nEOItlLOwM-M9pbhJPdaRsEYi0DB7UNtHR0yipbGgC7jlEeNizVfIzfoRG0sqaAV2z01mpfPtKGY8JMJ3B6JwxYL67ZOc8ZpfUtlf3VfGO_X-Hwfiu7WyvniIW44wQewbljFjeagGeFrs7v7YornamfbsvSCd3SmAFDtvitDigqO44IVJ2HPWVg5nnNopMVE_bbdwK9gOq2ZATDOKbdKZE1QzaT6eS5xW8uXzGnddF_-NlaLfI"
+          <Image
+            src={nightDayImg}
             alt="Recovery operator working roadside on a British motorway at twilight, illuminated by amber warning beacons."
-            width="1600"
-            height="900"
+            width={1600}
+            height={900}
             loading="lazy"
             decoding="async"
             class="absolute inset-0 w-full h-full object-cover"

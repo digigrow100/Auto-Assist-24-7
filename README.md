@@ -7,7 +7,8 @@ An [Astro](https://astro.build) website project.
 ```
 /
 ├── public/
-│   └── favicon.svg          # static files served as-is
+│   ├── favicon.webp         # site icon (static, unoptimized URL)
+│   └── og-image.webp        # social share preview image
 ├── src/
 │   ├── assets/
 │   │   └── images/          # content images, optimized via Astro's <Image />

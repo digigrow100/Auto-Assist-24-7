@@ -1,5 +1,11 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import heroImg from '../assets/images/01-recovery-motorway-night.webp';
+import recoveryCardImg from '../assets/images/02-car-loading-recovery-truck.webp';
+import jumpStartCardImg from '../assets/images/03-jumpstart-diagnostics.webp';
+import tyresCardImg from '../assets/images/04-mobile-tyre-fitting.webp';
+import statementImg from '../assets/images/05-dispatch-tablet.webp';
 ---
 
 <Layout
@@ -36,11 +42,11 @@ import Layout from '../layouts/Layout.astro';
 
         <div class="relative w-full rounded-xl overflow-hidden bg-surface-container shadow-2xl mt-space-sm">
           <div class="relative w-full h-[360px] md:h-[480px] lg:h-[560px]">
-            <img
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDejVieciOHojxWQAtrwqCIEV-69OezWTZaC9i9ES0vPp0wSSTDN5vfDHhJY8nO7FxaVWhrtte7vWc7zJnI9xqCM9L9DGwh7lqVL4As5_g_X1OD1XgUAJCQHNk1nOJMjN5pFU1QVHLIlAMWz8KO8cz5VTs2H8BkfgE-54bPla7B4u67kcw54arfdHlUrqZnJDNrh0CSNSU2twUKFYCIWJJoe8YU5bX498IdUYwZasnpNaopzRuVLLC4FA"
+            <Image
+              src={heroImg}
               alt="Cinematic night view of a UK flatbed vehicle recovery transporter on a wet rainy British motorway hard shoulder, with amber and cyan emergency beacon lights and a roadside rescue crew in high-vis gear."
-              width="1600"
-              height="900"
+              width={1600}
+              height={900}
               loading="eager"
               fetchpriority="high"
               decoding="async"
@@ -213,7 +219,7 @@ import Layout from '../layouts/Layout.astro';
               icon: 'local_shipping',
               iconColor: 'text-primary',
               hoverColor: 'group-hover:text-primary-container',
-              img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAJ6IcRu1nzmwkEqzODZfFK-kr-CmAX6gQzy9D_tYJ2h3Rn98EHvOZ8PteM_44veiRxwZ2XHYKco6TZKrtDaPCqwPF-GQJij3tA7_aiVOPHcaDOYPvwnEE2KvWX2svOKFQ7MyhPbJdBopMmQrl53yhv9k66ArlUctTew4jgy4ddQKySAAVF_wifj17K23ljD-mpI6vGs-AGTrxyLMM_d_V2A3CejbxvtLXVpqnR1I1wttOwd5Uw__MGEA',
+              img: recoveryCardImg,
               alt: 'Close-up of a modern flatbed vehicle recovery truck loading a premium saloon onto hydraulic tilt-tray ramps at night.',
             },
             {
@@ -225,7 +231,7 @@ import Layout from '../layouts/Layout.astro';
               icon: 'battery_charging_full',
               iconColor: 'text-secondary-fixed-dim',
               hoverColor: 'group-hover:text-secondary-fixed-dim',
-              img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBJNbrUxynUGF8zDH64LRkLFspEmr7GIxlc2sgwCCSlzzb_oYGEreq7pYtaMMqFN2wHBIydkmMIKo2MeOjgjgOedOnrThKtqrrDNF5RqSD8nhVtLDTSI9lthab23NEPKLB1nsV6o6H0KljYGdRuaHQKF2R0fp5zBw8N7edZdP8nfsUlDSwR63h896KN4KZXeIFwKMYwl6MrrXmvxHDty3VUjKHwHN8oI1C0nwxjmzTko_eF_lPi01IjZw',
+              img: jumpStartCardImg,
               alt: 'Automotive technician using a digital battery analyzer and jump pack on a modern hybrid car engine bay.',
             },
             {
@@ -237,17 +243,17 @@ import Layout from '../layouts/Layout.astro';
               icon: 'tire_repair',
               iconColor: 'text-tertiary-fixed',
               hoverColor: 'group-hover:text-tertiary-container',
-              img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDlOrwSs7VVZtCc5fus7uGryAdBIJJrH8qYVzVxk0oCpfvniEFdBPQ36B_3JBL4gBTuRRSTxX421DlBlS7YUKnunVNDw-ChdfoXb41ERL7cH4ieaMKYy5XyaA0eWfcx5bAlUbqccVmCf6iqvumlLbb0GNjSyK2ZF9yIIzqooZIK77yMPP4j4jYet27E8TinkTPKY9j2y2q_OQrfduj2COZ56SDJiMEDJ3QflU98PMH1EzPPyS7UMLz9NA',
+              img: tyresCardImg,
               alt: 'Mobile tyre technician replacing a roadside tyre beside a fully equipped mobile workshop van at night.',
             },
           ].map((service) => (
             <div class="group flex flex-col rounded-xl bg-surface-container overflow-hidden shadow-xl hover:-translate-y-1 transition-all duration-300">
               <div class="h-60 w-full relative">
-                <img
+                <Image
                   src={service.img}
                   alt={service.alt}
-                  width="800"
-                  height="600"
+                  width={800}
+                  height={600}
                   loading="lazy"
                   decoding="async"
                   class="absolute inset-0 w-full h-full object-cover"
@@ -350,11 +356,11 @@ import Layout from '../layouts/Layout.astro';
     <section class="relative w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin py-space-2xl z-10">
       <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-surface-container">
         <div class="relative w-full h-[420px] md:h-[540px]">
-          <img
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0aS2L58-nME_Ljw41zfOcerbL7IbBi6JSXXur1J3BmM0DcYTIb5fIi7jWQrO1wPB-qSs39AOgEeBItAWJ0XRtB4vTkkQpcbIWNO8R_wQaJfzU1AHvZLSCkKIBCK1yY8MDwoFhC3dH46Aehh8yrwwenfbkMgWm5IjEGqW2aggUnSI8-WSwQrqPVSX1RwLaZj3p4ZEdo-7N-iZdo0ir-mDUWpjl5ypzaCvWASYuhBmKfhiFCLhXxFi1MQ"
+          <Image
+            src={statementImg}
             alt="Roadside technician holding an illuminated dispatch tablet beside a recovery transporter on a dual carriageway at dusk, amber roof strobe lights flashing."
-            width="1600"
-            height="900"
+            width={800}
+            height={500}
             loading="lazy"
             decoding="async"
             class="absolute inset-0 w-full h-full object-cover"

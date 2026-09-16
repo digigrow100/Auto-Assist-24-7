@@ -1,5 +1,9 @@
 ---
+import { Image } from 'astro:assets';
 import Layout from '../layouts/Layout.astro';
+import recoveryImg from '../assets/images/06-winching-recovery.webp';
+import jumpStartImg from '../assets/images/07-battery-assistance.webp';
+import tyresImg from '../assets/images/08-tyre-check-residential.webp';
 
 const services = [
   {
@@ -15,7 +19,7 @@ const services = [
       'Accident extraction and incident management',
     ],
     linkLabel: 'Request Vehicle Recovery',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB-IUT0EHd2D4uN0avu-IlB9jy3r5-Jdb8CMliPHwmoN_PFopwmdFVXwjUskkmn7EIwEluGenqffmhXpO8b3vGOqy54DS6JI5vM9kNFZLWcp5UKMOG7sd_LCIgc7tAwEKdnTI5xAuUUkRYcw2n182YeDgpZeWyFlJ-mqEHCksCzwz9yxqg4obMpzpAfaT24Sc6poEJT3VWs-uuwZXtqWLBErgRyjdvmbuYpvr0pmnzeS25RY1Qhw9NN4A',
+    img: recoveryImg,
     alt: 'A yellow recovery tilt-tray flatbed truck winching a dark blue estate car onto its bed on a British motorway at dusk with amber warning beacons.',
     specLabel: 'Slidebed Load Rating',
     specValue: 'Up to 4.5T GVM',
@@ -37,7 +41,7 @@ const services = [
       'Zero risk of voltage surge or ECU damage',
     ],
     linkLabel: 'Request Jump Start',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD-sUUG_AeiBE0RV7a6H-SwU3lTZtn9K11MtfYu0uDS0kuvrwTe2ZBXTmhAisQ85I7Wez8esn1rA_8nIFQkgu1wHHMaj0GRkyydA5zMHb6psitGFxI_R50SfbABYyseJ-SXR_BY12suf2E4haWDS57hsh2ZSHCL3u1as48Vewv54FmxQOHfsWPT7OtqeGDmraBg2oggudKXSfB-etkXz4Ty2Wovqoeohm80LmWMuNQOYVqGQtuKzaIjKw',
+    img: jumpStartImg,
     alt: 'Roadside technician in a high-visibility jacket connecting jump start capacitor clamps to a car battery beside a British highway at sunset.',
     specLabel: null,
     specIcon: null,
@@ -58,7 +62,7 @@ const services = [
       'Motorway hard shoulder and driveway service',
     ],
     linkLabel: 'Get Mobile Tyre Help',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC3BIs5pEfoRUc3dvo10yS5CX625Thu1TTkIirMjWcBNJmbVX4ApGhoIGIxNX02PLFFv2_PaAqPY0HsZtjbgyOMZsDpPNL3RGKC6oXnrTU9WOCrDo4AIYUwLS1It1GMKBEm98Aq0RlDth-iLoK-ech1ZJKrCFkhYhaLcO7mbNC_71GgQ2-_I-UEUijXorIQa2CJB9XXQsx7nrVqnqihTAtqiJ9lDO2wftZir2goLKiBRStX0b92YGcEMQ',
+    img: tyresImg,
     alt: 'A mobile tyre fitting technician kneeling beside a car on a residential UK street with a fully equipped workshop van behind him.',
     specLabel: 'Mobile Fitting Unit',
     specValue: 'Wheel Sizes 15" - 22"',
@@ -222,11 +226,11 @@ const steps = [
 
               <div class={`lg:col-span-6 relative ${index === 1 ? 'order-1 lg:order-1' : ''}`}>
                 <div class="relative rounded-lg overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.8)]">
-                  <img
+                  <Image
                     src={service.img}
                     alt={service.alt}
-                    width="800"
-                    height="500"
+                    width={800}
+                    height={500}
                     loading="lazy"
                     decoding="async"
                     class="w-full h-80 lg:h-[400px] object-cover"
