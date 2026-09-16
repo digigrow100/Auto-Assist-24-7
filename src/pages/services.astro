@@ -1,0 +1,435 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const services = [
+  {
+    num: '01',
+    title: 'Vehicle Recovery & Flatbed Transport',
+    tag: 'Heavy Flatbed & Tilt-Tray Dispatch',
+    desc: 'Professional vehicle recovery for breakdowns, damaged vehicles and vehicles that cannot continue their journey. Equipped with low-approach slide beds suitable for sedans, SUVs, luxury performance cars, and electric vehicles.',
+    bullets: [
+      'Breakdown recovery on motorways, dual carriageways & A-roads',
+      'Low-approach hydraulic tilt trays for low clearance vehicles',
+      'Direct garage transport or onward journey repatriation',
+      'Safe passenger transport for up to 6 vehicle occupants',
+      'Accident extraction and incident management',
+    ],
+    linkLabel: 'Request Vehicle Recovery',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB-IUT0EHd2D4uN0avu-IlB9jy3r5-Jdb8CMliPHwmoN_PFopwmdFVXwjUskkmn7EIwEluGenqffmhXpO8b3vGOqy54DS6JI5vM9kNFZLWcp5UKMOG7sd_LCIgc7tAwEKdnTI5xAuUUkRYcw2n182YeDgpZeWyFlJ-mqEHCksCzwz9yxqg4obMpzpAfaT24Sc6poEJT3VWs-uuwZXtqWLBErgRyjdvmbuYpvr0pmnzeS25RY1Qhw9NN4A',
+    alt: 'A yellow recovery tilt-tray flatbed truck winching a dark blue estate car onto its bed on a British motorway at dusk with amber warning beacons.',
+    specLabel: 'Slidebed Load Rating',
+    specValue: 'Up to 4.5T GVM',
+    specIcon: 'local_shipping',
+    glow: 'bg-primary-container/10',
+    text: 'text-primary-container',
+    dot: 'bg-primary-container',
+  },
+  {
+    num: '02',
+    title: 'Jump Start Assistance & 12V Diagnostics',
+    tag: 'Rapid 12V Boost & Alternator Checks',
+    desc: 'Roadside battery support when a flat or weak battery leaves your vehicle unable to start. We bring industrial surge-protected capacitor packs to get you moving safely without risking sensitive vehicle electronics.',
+    bullets: [
+      'Flat battery emergency assistance',
+      'Roadside jump starts for 12V and mild hybrids',
+      'Alternator charging circuit health test',
+      'Fast dispatch to residential or roadside locations',
+      'Zero risk of voltage surge or ECU damage',
+    ],
+    linkLabel: 'Request Jump Start',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuD-sUUG_AeiBE0RV7a6H-SwU3lTZtn9K11MtfYu0uDS0kuvrwTe2ZBXTmhAisQ85I7Wez8esn1rA_8nIFQkgu1wHHMaj0GRkyydA5zMHb6psitGFxI_R50SfbABYyseJ-SXR_BY12suf2E4haWDS57hsh2ZSHCL3u1as48Vewv54FmxQOHfsWPT7OtqeGDmraBg2oggudKXSfB-etkXz4Ty2Wovqoeohm80LmWMuNQOYVqGQtuKzaIjKw',
+    alt: 'Roadside technician in a high-visibility jacket connecting jump start capacitor clamps to a car battery beside a British highway at sunset.',
+    specLabel: null,
+    specIcon: null,
+    glow: 'bg-secondary-fixed-dim/10',
+    text: 'text-secondary-fixed-dim',
+    dot: 'bg-secondary-fixed-dim',
+  },
+  {
+    num: '03',
+    title: 'Mobile Roadside Tyre Fitting & Puncture Repair',
+    tag: 'Mobile Van Workshop & Punctures',
+    desc: 'Mobile roadside support for tyre punctures, blowouts, and tread damage when you cannot safely continue your journey. Our mobile workshop vans arrive equipped with high-speed digital balancers and pneumatic bead tools.',
+    bullets: [
+      'Puncture repair and blowout replacement on-site',
+      'Mobile van equipped for alloy wheels from 15" to 22"',
+      'Locking wheel nut extraction without rim damage',
+      'Premium brand and economy tyre inventory carried',
+      'Motorway hard shoulder and driveway service',
+    ],
+    linkLabel: 'Get Mobile Tyre Help',
+    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC3BIs5pEfoRUc3dvo10yS5CX625Thu1TTkIirMjWcBNJmbVX4ApGhoIGIxNX02PLFFv2_PaAqPY0HsZtjbgyOMZsDpPNL3RGKC6oXnrTU9WOCrDo4AIYUwLS1It1GMKBEm98Aq0RlDth-iLoK-ech1ZJKrCFkhYhaLcO7mbNC_71GgQ2-_I-UEUijXorIQa2CJB9XXQsx7nrVqnqihTAtqiJ9lDO2wftZir2goLKiBRStX0b92YGcEMQ',
+    alt: 'A mobile tyre fitting technician kneeling beside a car on a residential UK street with a fully equipped workshop van behind him.',
+    specLabel: 'Mobile Fitting Unit',
+    specValue: 'Wheel Sizes 15" - 22"',
+    specIcon: 'build_circle',
+    glow: 'bg-tertiary-fixed/10',
+    text: 'text-tertiary-fixed',
+    dot: 'bg-tertiary-fixed',
+  },
+];
+
+const triageCards = [
+  { target: 'recovery', icon: 'rv_hookup', unit: 'UNIT: FLATBED', title: 'Vehicle Recovery', desc: 'Car cannot run, mechanical failure, steering fault, transmission lock, or incident recovery.', fleet: '14 Transporters Active', eta: '30 - 45 Mins', text: 'text-primary-container', textSemibold: 'text-primary-container font-semibold', btnClass: 'bg-primary-container text-on-primary-container' },
+  { target: 'jumpstart', icon: 'bolt', unit: 'UNIT: BOOSTER', title: 'Jump Start', desc: 'Clicking starter motor, lights left on, dead battery in cold weather, hybrid aux battery fail.', fleet: '22 Rapid Patrols Active', eta: '25 - 35 Mins', text: 'text-secondary-fixed-dim', textSemibold: 'text-secondary-fixed-dim font-semibold', btnClass: 'bg-secondary-fixed-dim text-on-secondary' },
+  { target: 'tyres', icon: 'tire_repair', unit: 'UNIT: MOBILE TYRE', title: 'Mobile Tyres', desc: 'Puncture on motorway, sidewall tear, no spare wheel, or missing locking wheel nut key.', fleet: '18 Tyre Vans Active', eta: '35 - 50 Mins', text: 'text-tertiary-fixed', textSemibold: 'text-tertiary-fixed font-semibold', btnClass: 'bg-tertiary-fixed-dim text-on-tertiary-fixed' },
+];
+
+const steps = [
+  { num: '01', label: 'Instant', title: 'Contact Auto Assist 24/7', desc: 'Reach our UK-based operations desk through our quick online triage form or toll-free priority dispatch line.' },
+  { num: '02', label: 'GPS Telemetry', title: 'Share Your Location', desc: 'Send your exact live smartphone GPS pin, 3-word what3words address, or motorway driver location marker.' },
+  { num: '03', label: 'Diagnostic Routing', title: 'Tell Us The Problem', desc: 'Our dispatch team selects the proper equipment: whether an all-wheel flatbed, mobile tyre fitter, or industrial jump pack.' },
+  { num: '04', label: 'Quote Locked', title: 'Assistance Is Arranged', desc: 'Receive an upfront fixed quote with no hidden extras, plus a live SMS tracking link to monitor your driver in real-time.', last: true },
+  { num: '05', label: 'Resolution', title: 'We Help With Your Vehicle', desc: 'A certified PAS 43 technician safely repairs your puncture, charges your battery, or transports your vehicle and passengers to safety.', final: true },
+];
+---
+
+<Layout
+  title="Services | Auto Assist 24/7"
+  description="Vehicle recovery and flatbed transport, jump start and 12V battery diagnostics, and mobile tyre fitting — professional roadside support across the UK, 24/7."
+  currentPath="/services"
+>
+  <div class="flex flex-col w-full">
+    <!-- 1. SERVICES HERO -->
+    <section class="relative w-full px-gutter-sm lg:px-margin pt-space-xl pb-space-2xl z-10">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-gutter items-center">
+        <div class="lg:col-span-7 flex flex-col gap-space-md">
+          <div class="inline-flex items-center gap-space-xs self-start px-space-md py-space-xs rounded-full bg-surface-container/90 shadow-[0_0_12px_rgba(0,242,254,0.15)]">
+            <span class="w-2 h-2 rounded-full bg-primary-container shadow-[0_0_8px_#00f2fe]"></span>
+            <span class="text-primary-container font-label-sm text-label-sm uppercase tracking-widest">Roadside Services • UK Rapid Dispatch</span>
+          </div>
+          <h1 class="text-on-surface font-headline-lg-mobile lg:font-display-hero text-headline-lg-mobile lg:text-display-hero max-w-2xl tracking-tight">
+            Three Services. <span class="bg-gradient-to-r from-primary-container via-secondary-fixed-dim to-primary bg-clip-text text-transparent drop-shadow-[0_0_24px_rgba(0,242,254,0.35)]">One Team Ready 24/7.</span>
+          </h1>
+          <p class="text-on-surface-variant font-body-lg text-body-lg max-w-xl">
+            Auto Assist 24/7 provides professional roadside support for recovery, battery problems and tyre emergencies across the UK motorway network and suburban routes.
+          </p>
+          <div class="flex flex-wrap items-center gap-space-md pt-space-sm">
+            <a class="inline-flex items-center justify-center px-space-xl py-space-md rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_0_24px_rgba(0,242,254,0.45)] hover:shadow-[0_0_32px_rgba(0,242,254,0.7)] hover:scale-[1.02] transition-all" href="#selector">
+              <span class="material-symbols-outlined mr-space-xs text-[20px]">bolt</span>
+              Get Help Now
+            </a>
+            <a class="inline-flex items-center justify-center px-space-xl py-space-md rounded-full bg-surface-container-high/80 text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest hover:text-primary-container transition-all shadow-md" href="tel:0800247999">
+              <span class="material-symbols-outlined mr-space-xs text-[20px]">phone_in_talk</span>
+              Contact Us
+            </a>
+          </div>
+          <div class="pt-space-md flex flex-wrap items-center gap-space-md">
+            <div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase">
+              <span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">verified</span> PAS 43 Accredited
+            </div>
+            <div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase">
+              <span class="material-symbols-outlined text-primary-container text-[16px]">speed</span> 38-Min Avg London & M25
+            </div>
+            <div class="flex items-center gap-space-xs text-on-surface-variant font-label-sm text-label-sm uppercase">
+              <span class="material-symbols-outlined text-primary-container text-[16px]">lock_reset</span> Fixed Transparent Pricing
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 relative min-h-[380px] flex items-center justify-center">
+          <div class="absolute w-72 h-72 rounded-full bg-primary-container/10 blur-3xl pointer-events-none"></div>
+          <div class="relative w-full max-w-md flex flex-col gap-space-md">
+            <div class="p-space-md rounded-xl bg-surface-container/90 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.6)] transform -rotate-1 hover:rotate-0 hover:translate-x-1 transition-all duration-300">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-space-sm">
+                  <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-primary-container shadow-[0_0_12px_rgba(0,242,254,0.3)]">
+                    <span class="material-symbols-outlined text-[22px]">rv_hookup</span>
+                  </div>
+                  <div>
+                    <div class="text-on-surface font-headline-sm text-headline-sm">Vehicle Recovery</div>
+                    <div class="text-on-surface-variant font-label-sm text-label-sm uppercase">Flatbed & Low-Approach Tilt Trays</div>
+                  </div>
+                </div>
+                <span class="px-space-xs py-1 rounded bg-surface-container-high text-primary-container font-label-sm text-label-sm">LIVE</span>
+              </div>
+            </div>
+
+            <div class="p-space-md rounded-xl bg-surface-container/90 backdrop-blur-xl shadow-[0_16px_36px_rgba(0,0,0,0.7)] ml-space-md transform rotate-2 hover:rotate-0 hover:translate-x-1 transition-all duration-300">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-space-sm">
+                  <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-secondary-fixed-dim shadow-[0_0_12px_rgba(0,255,135,0.3)]">
+                    <span class="material-symbols-outlined text-[22px]">battery_charging_full</span>
+                  </div>
+                  <div>
+                    <div class="text-on-surface font-headline-sm text-headline-sm">Jump Start & 12V</div>
+                    <div class="text-on-surface-variant font-label-sm text-label-sm uppercase">Capacitor Surge Protection</div>
+                  </div>
+                </div>
+                <span class="px-space-xs py-1 rounded bg-surface-container-high text-secondary-fixed-dim font-label-sm text-label-sm">READY</span>
+              </div>
+            </div>
+
+            <div class="p-space-md rounded-xl bg-surface-container/90 backdrop-blur-xl shadow-[0_12px_32px_rgba(0,0,0,0.6)] transform -rotate-2 hover:rotate-0 hover:translate-x-1 transition-all duration-300">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-space-sm">
+                  <div class="w-10 h-10 rounded-lg bg-surface-container-high flex items-center justify-center text-tertiary-fixed shadow-[0_0_12px_rgba(221,183,255,0.3)]">
+                    <span class="material-symbols-outlined text-[22px]">tire_repair</span>
+                  </div>
+                  <div>
+                    <div class="text-on-surface font-headline-sm text-headline-sm">Mobile Tyres</div>
+                    <div class="text-on-surface-variant font-label-sm text-label-sm uppercase">15" to 22" Fitting On Location</div>
+                  </div>
+                </div>
+                <span class="px-space-xs py-1 rounded bg-surface-container-high text-tertiary-fixed font-label-sm text-label-sm">ON-CALL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MOVING NEON MARQUEE -->
+    <div class="w-full overflow-hidden bg-surface-container-low py-space-md relative shadow-[inset_0_1px_0_rgba(255,255,255,0.05),inset_0_-1px_0_rgba(255,255,255,0.05)] marquee-container">
+      <div class="inline-flex whitespace-nowrap motion-safe:animate-[marquee_24s_linear_infinite] hover:[animation-play-state:paused] items-center gap-space-xl">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <span class={`${i % 2 === 0 ? 'text-primary-container drop-shadow-[0_0_8px_rgba(0,242,254,0.4)]' : 'text-secondary-fixed-dim drop-shadow-[0_0_8px_rgba(0,255,135,0.4)]'} font-headline-md text-headline-md uppercase tracking-wider`}>
+            VEHICLE RECOVERY • JUMP START • MOBILE TYRES • 24/7 ROADSIDE SUPPORT • RAPID DISPATCH • PAS 43 CERTIFIED •
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- 3-5. SERVICES -->
+    {services.map((service, index) => (
+      <section class="relative w-full px-gutter-sm lg:px-margin py-space-2xl z-10">
+        <div class="max-w-7xl mx-auto">
+          <div class="p-space-lg lg:p-space-xl rounded-xl bg-surface-container/95 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.8)] relative overflow-hidden group hover:shadow-[0_0_36px_rgba(0,242,254,0.25)] transition-all duration-500">
+            <div class={`absolute ${index % 2 === 0 ? '-right-20 -top-20' : '-left-20 -bottom-20'} w-80 h-80 rounded-full ${service.glow} blur-[90px] pointer-events-none`}></div>
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-center relative z-10">
+              <div class={`lg:col-span-6 flex flex-col gap-space-md ${index === 1 ? 'order-2 lg:order-2' : ''}`}>
+                <div class="flex items-baseline gap-space-md">
+                  <span class={`${service.text} font-headline-lg text-headline-lg drop-shadow-[0_0_12px_rgba(0,242,254,0.6)]`}>{service.num}</span>
+                  <span class="text-on-surface-variant font-label-md text-label-md uppercase tracking-widest">{service.tag}</span>
+                </div>
+                <h2 class="text-on-surface font-headline-lg text-headline-lg">{service.title}</h2>
+                <p class="text-on-surface-variant font-body-md text-body-md">{service.desc}</p>
+                <ul class="flex flex-col gap-space-xs text-on-surface font-body-md text-body-md">
+                  {service.bullets.map((bullet) => (
+                    <li class="flex items-start gap-space-sm">
+                      <span class={`w-2 h-2 rounded-full ${service.dot} mt-2 shadow-[0_0_6px_rgba(0,242,254,0.8)]`}></span>
+                      <span>{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div class="pt-space-sm">
+                  <a class={`inline-flex items-center gap-space-sm ${service.text} font-label-lg text-label-lg group/link`} href="#selector">
+                    <span>{service.linkLabel}</span>
+                    <span class="material-symbols-outlined text-[18px] transition-transform duration-300 group-hover/link:translate-x-2">arrow_forward</span>
+                  </a>
+                </div>
+              </div>
+
+              <div class={`lg:col-span-6 relative ${index === 1 ? 'order-1 lg:order-1' : ''}`}>
+                <div class="relative rounded-lg overflow-hidden shadow-[0_12px_40px_rgba(0,0,0,0.8)]">
+                  <img
+                    src={service.img}
+                    alt={service.alt}
+                    width="800"
+                    height="500"
+                    loading="lazy"
+                    decoding="async"
+                    class="w-full h-80 lg:h-[400px] object-cover"
+                  />
+                  <div class="absolute inset-0 bg-gradient-to-t from-surface-container-lowest via-transparent to-transparent opacity-60"></div>
+                  {service.specLabel && (
+                    <div class="absolute bottom-space-md left-space-md right-space-md p-space-sm rounded-lg bg-surface-container-lowest/80 backdrop-blur-md flex items-center justify-between text-on-surface">
+                      <div class="flex items-center gap-space-xs">
+                        <span class="material-symbols-outlined text-primary-container text-[18px]">{service.specIcon}</span>
+                        <span class="font-label-sm text-label-sm uppercase">{service.specLabel}</span>
+                      </div>
+                      <span class={`${service.text} font-metric-mono text-label-lg`}>{service.specValue}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    <!-- 6. INTERACTIVE SERVICE SELECTOR -->
+    <section class="relative w-full px-gutter-sm lg:px-margin py-space-2xl z-10" id="selector">
+      <div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+        <div class="text-center max-w-2xl mx-auto flex flex-col gap-space-xs">
+          <span class="text-primary-container font-label-sm text-label-sm uppercase tracking-widest">Rapid Route Triage</span>
+          <h2 class="text-on-surface font-headline-lg text-headline-lg">What Do You Need Help With?</h2>
+          <p class="text-on-surface-variant font-body-md text-body-md">
+            Select your breakdown scenario to route the appropriate emergency unit and receive an upfront fixed quote.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter" id="triage-cards">
+          {triageCards.map((card) => (
+            <div class="triage-card group cursor-pointer p-space-lg rounded-xl bg-surface-container/80 backdrop-blur-xl shadow-lg hover:shadow-[0_0_24px_rgba(0,242,254,0.3)] transition-all flex flex-col justify-between gap-space-lg" data-target={card.target}>
+              <div class="flex flex-col gap-space-md">
+                <div class="flex items-center justify-between">
+                  <div class={`w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center ${card.text} shadow-[0_0_12px_rgba(0,242,254,0.2)]`}>
+                    <span class="material-symbols-outlined text-[28px]">{card.icon}</span>
+                  </div>
+                  <span class={`${card.text} font-label-sm text-label-sm uppercase tracking-wider`}>{card.unit}</span>
+                </div>
+                <div>
+                  <h3 class="text-on-surface font-headline-md text-headline-md">{card.title}</h3>
+                  <p class="text-on-surface-variant font-body-sm text-body-sm mt-space-xs">{card.desc}</p>
+                </div>
+                <div class="p-space-sm rounded-lg bg-surface-container-low flex flex-col gap-1">
+                  <div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm">
+                    <span>Fleet In Area:</span>
+                    <span class={card.textSemibold}>{card.fleet}</span>
+                  </div>
+                  <div class="flex justify-between text-on-surface-variant font-label-sm text-label-sm">
+                    <span>Response Est:</span>
+                    <span class="text-on-surface font-semibold">{card.eta}</span>
+                  </div>
+                </div>
+              </div>
+              <button class={`triage-select-btn w-full py-space-sm rounded-lg ${card.btnClass} font-label-lg text-label-lg shadow-md hover:shadow-[0_0_16px_rgba(0,242,254,0.5)] transition-all flex items-center justify-center gap-space-xs`} data-target={card.target} type="button">
+                <span>Select {card.title}</span>
+                <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+              </button>
+            </div>
+          ))}
+        </div>
+
+        <div class="hidden p-space-md rounded-xl bg-surface-container-high/90 backdrop-blur-md shadow-2xl sm:flex-row items-center justify-between gap-space-md" id="selection-confirm">
+          <div class="flex items-center gap-space-sm">
+            <div class="w-3 h-3 rounded-full bg-primary-container animate-pulse"></div>
+            <div>
+              <span class="font-headline-sm text-headline-sm text-on-surface" id="confirm-title">Service Selected</span>
+              <p class="text-on-surface-variant font-body-sm text-body-sm" id="confirm-desc">Routing to nearest UK fleet driver...</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-space-sm w-full sm:w-auto">
+            <a class="w-full sm:w-auto px-space-md py-space-xs rounded-full bg-error-container text-error font-label-lg text-label-lg flex items-center justify-center gap-space-xs" href="tel:0800247999">
+              <span class="material-symbols-outlined text-[18px]">call</span> Call 0800 247 999
+            </a>
+            <a class="w-full sm:w-auto px-space-md py-space-xs rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg flex items-center justify-center" href="/contact">
+              Proceed with Dispatch
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. HOW IT WORKS -->
+    <section class="relative w-full px-gutter-sm lg:px-margin py-space-2xl z-10">
+      <div class="max-w-4xl mx-auto flex flex-col gap-space-xl">
+        <div class="text-center flex flex-col gap-space-xs">
+          <span class="text-primary-container font-label-sm text-label-sm uppercase tracking-widest">Protocol & SLA</span>
+          <h2 class="text-on-surface font-headline-lg text-headline-lg">Streamlined 5-Step Protocol</h2>
+          <p class="text-on-surface-variant font-body-md text-body-md">
+            How we dispatch and resolve your roadside emergency with zero subscription required.
+          </p>
+        </div>
+
+        <div class="relative flex flex-col gap-space-lg pl-space-lg md:pl-space-2xl">
+          <div class="absolute left-3 md:left-5 top-4 bottom-4 w-px bg-gradient-to-b from-primary-container via-primary-container to-secondary-fixed-dim shadow-[0_0_8px_rgba(0,242,254,0.6)]"></div>
+          {steps.map((step) => (
+            <div class="relative flex items-start gap-space-md">
+              <div class={`absolute -left-[27px] md:-left-[35px] top-1.5 w-6 h-6 rounded-full bg-surface-container flex items-center justify-center shadow-[0_0_12px_rgba(0,242,254,0.5)]`}>
+                <div class={`w-2.5 h-2.5 rounded-full ${step.final ? 'bg-secondary-fixed-dim motion-safe:animate-ping' : 'bg-primary-container'}`}></div>
+              </div>
+              <div class="p-space-md rounded-xl bg-surface-container/90 backdrop-blur-md shadow-md w-full">
+                <div class="flex items-center justify-between">
+                  <span class={`${step.final ? 'text-secondary-fixed-dim' : 'text-primary-container'} font-label-sm text-label-sm uppercase tracking-wider`}>Step {step.num}</span>
+                  <span class={`${step.final ? 'text-secondary-fixed-dim' : 'text-on-surface-variant'} font-label-sm text-label-sm`}>{step.label}</span>
+                </div>
+                <h4 class="text-on-surface font-headline-sm text-headline-sm mt-space-xs">{step.title}</h4>
+                <p class="text-on-surface-variant font-body-md text-body-md mt-space-xs">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. FACTUAL TRUST SECTION -->
+    <section class="relative w-full px-gutter-sm lg:px-margin py-space-xl z-10">
+      <div class="max-w-7xl mx-auto p-space-lg lg:p-space-xl rounded-xl bg-surface-container/60 backdrop-blur-xl shadow-xl">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter text-center">
+          <div class="flex flex-col items-center gap-space-xs py-space-md md:py-0">
+            <span class="text-primary-container font-metric-mono text-headline-lg drop-shadow-[0_0_12px_rgba(0,242,254,0.4)]">24/7</span>
+            <span class="text-on-surface font-headline-sm text-headline-sm">Roadside Availability</span>
+            <span class="text-on-surface-variant font-body-sm text-body-sm">All UK Motorways & Urban Hubs</span>
+          </div>
+          <div class="flex flex-col items-center gap-space-xs py-space-md md:py-0">
+            <span class="text-secondary-fixed-dim font-metric-mono text-headline-lg drop-shadow-[0_0_12px_rgba(0,255,135,0.4)]">3 Core</span>
+            <span class="text-on-surface font-headline-sm text-headline-sm">Specialized Services</span>
+            <span class="text-on-surface-variant font-body-sm text-body-sm">Recovery, Battery & Mobile Tyres</span>
+          </div>
+          <div class="flex flex-col items-center gap-space-xs py-space-md md:py-0">
+            <span class="text-primary font-metric-mono text-headline-lg">ONE CALL</span>
+            <span class="text-on-surface font-headline-sm text-headline-sm">Direct UK Dispatch</span>
+            <span class="text-on-surface-variant font-body-sm text-body-sm">No Recurring Annual Subscriptions</span>
+          </div>
+          <div class="flex flex-col items-center gap-space-xs py-space-md md:py-0">
+            <span class="text-tertiary-fixed font-metric-mono text-headline-lg drop-shadow-[0_0_12px_rgba(221,183,255,0.4)]">100%</span>
+            <span class="text-on-surface font-headline-sm text-headline-sm">Upfront Quotation</span>
+            <span class="text-on-surface-variant font-body-sm text-body-sm">Guaranteed Fixed Rates Before Dispatch</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. SERVICES FINAL CTA -->
+    <section class="relative w-full px-gutter-sm lg:px-margin py-space-2xl z-10">
+      <div class="max-w-5xl mx-auto relative rounded-xl overflow-hidden bg-gradient-to-br from-surface-container to-surface-container-high p-space-xl text-center shadow-[0_24px_60px_rgba(0,0,0,0.8)]">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-container to-transparent shadow-[0_0_12px_rgba(0,242,254,0.8)]"></div>
+        <div class="flex flex-col items-center gap-space-md max-w-2xl mx-auto">
+          <span class="text-primary-container font-label-sm text-label-sm uppercase tracking-widest">National Control Centre Connected</span>
+          <h2 class="text-on-surface font-headline-lg text-headline-lg">Not Sure Which Service You Need?</h2>
+          <p class="text-on-surface-variant font-body-lg text-body-lg">
+            Tell our UK dispatch desk what happened and we will assign the correct recovery transporter or mobile workshop van immediately.
+          </p>
+          <div class="flex flex-col sm:flex-row items-center gap-space-md w-full justify-center pt-space-sm">
+            <a class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-xl py-space-md rounded-full bg-error-container text-error font-label-lg text-label-lg shadow-[0_0_20px_rgba(244,63,94,0.35)] hover:scale-[1.02] transition-all" href="tel:0800247999">
+              <span class="material-symbols-outlined text-[20px]">call</span>
+              Call Priority Dispatch: 0800 247 999
+            </a>
+            <a class="w-full sm:w-auto inline-flex items-center justify-center px-space-xl py-space-md rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_0_24px_rgba(0,242,254,0.4)] hover:scale-[1.02] transition-all" href="#selector">
+              Request Assistance Online
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+
+<script>
+  const confirmDrawer = document.getElementById('selection-confirm');
+  const title = document.getElementById('confirm-title');
+  const desc = document.getElementById('confirm-desc');
+
+  const copy: Record<string, { title: string; desc: string }> = {
+    recovery: { title: 'Vehicle Recovery & Transport Selected', desc: 'Dispatching heavy slidebed transporter. Fixed transparent rate allocated.' },
+    jumpstart: { title: 'Jump Start & 12V Diagnostic Selected', desc: 'Dispatching rapid patrol with surge-protected booster unit.' },
+    tyres: { title: 'Mobile Roadside Tyre Fitting Selected', desc: 'Dispatching mobile workshop van with tyre inventory and pneumatic balancers.' },
+  };
+
+  document.querySelectorAll('.triage-select-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = btn.getAttribute('data-target');
+      if (!target || !confirmDrawer || !title || !desc || !copy[target]) return;
+
+      confirmDrawer.classList.remove('hidden');
+      confirmDrawer.classList.add('flex', 'flex-col');
+      title.textContent = copy[target].title;
+      desc.textContent = copy[target].desc;
+      confirmDrawer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    });
+  });
+</script>

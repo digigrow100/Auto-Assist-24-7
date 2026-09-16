@@ -1,6 +1,108 @@
 ---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const serviceLinks = [
+  { label: 'Vehicle Recovery & Flatbed Transport', href: '/services' },
+  { label: 'Jump Start & 12V Battery Diagnostics', href: '/services' },
+  { label: 'Mobile Tyre Fitting & Emergency Puncture', href: '/services' },
+];
 ---
 
-<footer>
-  <p>Footer placeholder</p>
+<footer class="relative w-full bg-surface-container-lowest text-on-surface-variant z-10">
+  <div class="w-full h-px bg-gradient-to-r from-transparent via-primary-container/40 to-transparent shadow-[0_0_12px_rgba(0,242,254,0.5)]"></div>
+  <div class="w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin py-space-xl">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-gutter">
+      <div class="lg:col-span-5 flex flex-col gap-space-md">
+        <div class="flex items-center gap-space-xs">
+          <span class="text-primary font-headline-sm text-headline-sm uppercase tracking-tight">
+            AUTO ASSIST <span class="text-primary-container font-headline-sm text-headline-sm">24/7</span>
+          </span>
+        </div>
+        <p class="text-on-surface-variant font-body-md text-body-md max-w-sm">
+          24/7 emergency roadside assistance, recovery, jump start, and mobile tyre fitting across Great Britain.
+        </p>
+        <div class="flex items-center gap-space-sm">
+          <a
+            href="tel:0800247999"
+            class="px-space-sm py-space-xs rounded-full bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase hover:text-on-surface transition-colors"
+          >
+            National Control Centre: 0800 247 999
+          </a>
+        </div>
+      </div>
+
+      <div class="lg:col-span-3 flex flex-col gap-space-sm">
+        <span class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider mb-space-xs">Quick Navigation</span>
+        <nav class="flex flex-col gap-space-xs">
+          {
+            navLinks.map((link) => (
+              <a
+                href={link.href}
+                aria-current={currentPath === link.href ? 'page' : undefined}
+                class={
+                  currentPath === link.href
+                    ? 'font-body-sm text-body-sm transition-colors text-primary-container'
+                    : 'text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-colors'
+                }
+              >
+                {link.label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+
+      <div class="lg:col-span-4 flex flex-col gap-space-sm">
+        <span class="text-on-surface font-label-lg text-label-lg uppercase tracking-wider mb-space-xs">Core Roadside Services</span>
+        <div class="flex flex-col gap-space-xs">
+          {
+            serviceLinks.map((link) => (
+              <a href={link.href} class="text-on-surface-variant hover:text-on-surface font-body-sm text-body-sm transition-colors">
+                {link.label}
+              </a>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-space-xl pt-space-lg flex flex-col md:flex-row items-center justify-between gap-space-md text-on-surface-variant font-label-md text-label-md">
+      <p>&copy; {new Date().getFullYear()} Auto Assist 24/7 UK Operations Ltd. All rights reserved.</p>
+      <div class="flex items-center gap-space-lg">
+        <a class="hover:text-on-surface transition-colors" href="/privacy-policy">Privacy Policy</a>
+        <a class="hover:text-on-surface transition-colors" href="/terms-of-service">Terms</a>
+        <a class="hover:text-on-surface transition-colors" href="/cookie-policy">Cookie Policy</a>
+      </div>
+    </div>
+  </div>
 </footer>
+
+<div class="md:hidden fixed bottom-0 left-0 right-0 z-50 p-space-sm bg-surface-container-lowest/95 backdrop-blur-xl shadow-[0_-4px_24px_rgba(0,0,0,0.8)]">
+  <div class="grid grid-cols-2 gap-space-sm">
+    <a
+      class="flex items-center justify-center gap-space-xs py-space-sm rounded-lg bg-surface-container-high text-on-surface font-label-lg text-label-lg transition-colors hover:bg-surface-container-highest"
+      href="tel:0800247999"
+    >
+      <span class="material-symbols-outlined text-[18px] text-error">call</span>
+      Emergency Call
+    </a>
+    <a
+      class="flex items-center justify-center gap-space-xs py-space-sm rounded-lg bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_0_16px_rgba(0,242,254,0.4)]"
+      href="/contact"
+    >
+      <span class="material-symbols-outlined text-[18px]">fmd_good</span>
+      Get Assistance
+    </a>
+  </div>
+</div>

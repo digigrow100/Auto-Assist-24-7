@@ -1,6 +1,111 @@
 ---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Services', href: '/services' },
+  { label: 'About', href: '/about' },
+  { label: 'Contact', href: '/contact' },
+];
 ---
 
-<header>
-  <p>Header placeholder</p>
+<header class="fixed top-0 left-0 w-full z-50 px-gutter-sm lg:px-margin pt-space-sm">
+  <div class="h-20 w-full max-w-7xl mx-auto flex items-center justify-between px-space-lg bg-surface-container-lowest/80 backdrop-blur-2xl rounded-full shadow-[0_8px_32px_-4px_rgba(0,0,0,0.8),0_0_1px_1px_rgba(255,255,255,0.08),0_0_20px_-3px_rgba(0,242,254,0.15)]">
+    <div class="flex items-center gap-space-md">
+      <a class="flex items-center gap-space-sm" href="/">
+        <span class="text-primary font-headline-sm text-headline-sm uppercase tracking-tight">
+          AUTO ASSIST <span class="text-primary-container font-headline-sm text-headline-sm">24/7</span>
+        </span>
+      </a>
+      <div class="hidden xl:flex items-center gap-space-xs px-space-sm py-space-xs rounded-full bg-surface-container">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-secondary-fixed-dim opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-secondary-fixed-dim"></span>
+        </span>
+        <span class="text-secondary-fixed-dim font-label-sm text-label-sm uppercase">24/7 UK FLEET LIVE</span>
+      </div>
+    </div>
+
+    <nav class="hidden lg:flex items-center gap-space-lg">
+      {
+        navLinks.map((link) => (
+          <a
+            href={link.href}
+            aria-current={currentPath === link.href ? 'page' : undefined}
+            class={
+              currentPath === link.href
+                ? 'transition-colors bg-primary-container text-on-primary-container font-headline-sm px-space-md py-space-xs rounded-full'
+                : 'text-on-surface-variant hover:text-on-surface font-label-lg text-label-lg transition-colors'
+            }
+          >
+            {link.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-space-sm sm:gap-space-md">
+      <a
+        class="hidden sm:inline-flex items-center justify-center px-space-md py-space-xs rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_0_20px_-3px_rgba(0,242,254,0.45)] hover:shadow-[0_0_28px_rgba(0,242,254,0.7)] transition-all transform hover:scale-[1.02]"
+        href="/contact"
+      >
+        Get Roadside Help
+      </a>
+      <a
+        class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"
+        href="tel:0800247999"
+        aria-label="Call Auto Assist 24/7"
+      >
+        <span class="material-symbols-outlined text-on-primary text-[18px]">call</span>
+      </a>
+      <button
+        id="nav-toggle"
+        type="button"
+        class="lg:hidden w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-on-surface"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-nav"
+      >
+        <span class="material-symbols-outlined text-[22px]" id="nav-toggle-icon">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <nav
+    id="mobile-nav"
+    class="hidden lg:hidden mt-space-sm w-full max-w-7xl mx-auto flex flex-col gap-space-xs p-space-md rounded-2xl bg-surface-container-lowest/95 backdrop-blur-2xl shadow-[0_8px_32px_-4px_rgba(0,0,0,0.8)]"
+  >
+    {
+      navLinks.map((link) => (
+        <a
+          href={link.href}
+          aria-current={currentPath === link.href ? 'page' : undefined}
+          class={
+            currentPath === link.href
+              ? 'px-space-md py-space-sm rounded-lg bg-primary-container text-on-primary-container font-headline-sm text-headline-sm'
+              : 'px-space-md py-space-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-lg text-label-lg transition-colors'
+          }
+        >
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
 </header>
+
+<script>
+  const toggle = document.getElementById('nav-toggle');
+  const icon = document.getElementById('nav-toggle-icon');
+  const panel = document.getElementById('mobile-nav');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = !panel?.classList.contains('hidden');
+    panel?.classList.toggle('hidden');
+    toggle.setAttribute('aria-expanded', String(!isOpen));
+    if (icon) icon.textContent = isOpen ? 'menu' : 'close';
+  });
+</script>

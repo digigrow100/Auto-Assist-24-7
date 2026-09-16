@@ -1,14 +1,336 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+
+const services = [
+  {
+    icon: 'rv_hookup',
+    title: 'Vehicle Recovery',
+    tag: 'Flatbed & Tilt-Tray',
+    desc: 'Professional recovery for breakdowns and vehicles that cannot continue their journey, transported direct to your home, dealership, or trusted garage.',
+    text: 'text-primary-container',
+    hoverText: 'group-hover:text-primary-container',
+    glow: 'bg-primary-container/10',
+  },
+  {
+    icon: 'battery_charging_full',
+    title: 'Jump Start & 12V',
+    tag: 'Rapid On-Site Boost',
+    desc: 'Roadside battery assistance with a full alternator output test and high-amperage, ECU-safe boost to get you back on your way.',
+    text: 'text-secondary-fixed-dim',
+    hoverText: 'group-hover:text-secondary-fixed-dim',
+    glow: 'bg-secondary-fixed-dim/10',
+  },
+  {
+    icon: 'tire_repair',
+    title: 'Mobile Tyres',
+    tag: 'Roadside Workshop Van',
+    desc: 'Mobile tyre assistance for damaged, flat or replacement tyres with fully equipped vans, computerized balancing and puncture repair.',
+    text: 'text-tertiary-fixed',
+    hoverText: 'group-hover:text-tertiary-fixed',
+    glow: 'bg-tertiary-fixed/10',
+  },
+];
+
+const steps = [
+  { num: '01', icon: 'support_agent', title: 'Contact Us', desc: 'Call our priority hotline or request instant dispatch via our web form without tedious account setup.' },
+  { num: '02', icon: 'fmd_good', title: 'Share Your Location', desc: 'Drop what3words, GPS coordinates, or motorway marker post. Receive a guaranteed fixed price quote.' },
+  { num: '03', icon: 'local_shipping', title: 'Help Is Dispatched', desc: 'Track your dedicated recovery truck or mobile technician in real time via live SMS telemetry link.' },
+  { num: '04', icon: 'task_alt', title: 'We Assist Your Vehicle', desc: 'Roadside fix complete or vehicle safely transported to your preferred destination or repair centre.' },
+];
+
+const trustStats = [
+  { value: '24/7', label: 'Continuous Availability', desc: 'Direct response operational desks staffed continuously year-round.' },
+  { value: '3 Core', label: 'Specialized Roadside Services', desc: 'Vehicle Recovery, Rapid Jump Start, and Mobile Tyre Fitting.' },
+  { value: 'Anytime', label: 'When You Need Assistance', desc: 'Transparent upfront pay-as-you-go pricing with zero contract dues.' },
+];
+
+const reviews = [
+  {
+    quote: 'Stranded in pouring rain on the M4 hard shoulder with an alternator failure. Auto Assist quoted a clear flat rate and their driver arrived in 25 minutes. Clean low-load tilt tray loaded my lowered estate with absolute care.',
+    name: 'David H.',
+    meta: 'M4 Corridor • Tow Recovery',
+    text: 'text-primary-container',
+  },
+  {
+    quote: 'Blew out a run-flat tyre on the A1 near Hatfield on Sunday morning. The mobile tyre van had the exact OEM tyre in stock and fitted it in 20 minutes without wheel rim marks.',
+    name: 'Sophia P.',
+    meta: 'A1(M) • Mobile Tyre Fitting',
+    text: 'text-secondary-fixed-dim',
+  },
+  {
+    quote: 'Hybrid wouldn’t start at an airport hotel car park. The technician diagnosed a flat 12V auxiliary battery, boosted it with a surge-protected capacitor box, and verified charging telemetry before leaving.',
+    name: 'Gareth T.',
+    meta: 'Birmingham • Jump Start',
+    text: 'text-tertiary-fixed',
+  },
+];
 ---
 
-<Layout title="Auto Assist 24/7" description="Placeholder home page">
-  <Header />
-  <main>
-    <h1>Welcome</h1>
-    <p>This is placeholder content for the home page.</p>
-  </main>
-  <Footer />
+<Layout
+  title="Auto Assist 24/7 | UK Emergency Roadside Recovery"
+  description="Auto Assist 24/7 provides professional vehicle recovery, jump start and mobile tyre assistance when vehicle problems stop your journey — pay-as-you-go, no annual contracts."
+  currentPath="/"
+>
+  <div class="flex flex-col w-full relative">
+    <!-- 1. HERO -->
+    <section class="relative w-full px-gutter-sm lg:px-margin pt-space-md pb-space-2xl z-10 overflow-hidden">
+      <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-[720px] h-[280px] bg-primary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div class="max-w-7xl mx-auto flex flex-col items-center text-center gap-space-lg relative z-10">
+        <div class="inline-flex items-center gap-space-xs px-space-md py-space-xs rounded-full bg-surface-container-low text-primary-container font-label-sm text-label-sm uppercase tracking-widest shadow-[0_0_16px_rgba(0,242,254,0.15)]">
+          <span class="w-2 h-2 rounded-full bg-primary-container animate-pulse"></span>
+          <span>24/7 EMERGENCY ROADSIDE SUPPORT • UK NATIONWIDE FLEET</span>
+        </div>
+
+        <h1 class="text-on-surface font-headline-lg-mobile lg:font-display-hero text-headline-lg-mobile lg:text-display-hero tracking-tight max-w-4xl">
+          Roadside Help.
+          <span class="block text-primary-container drop-shadow-[0_0_24px_rgba(0,242,254,0.35)]">Whenever You Need It.</span>
+        </h1>
+
+        <p class="text-on-surface-variant font-body-lg text-body-lg max-w-2xl">
+          Auto Assist 24/7 provides professional vehicle recovery, jump start and mobile tyre assistance when vehicle problems stop your journey.
+        </p>
+
+        <div class="flex flex-col sm:flex-row items-center gap-space-md w-full sm:w-auto pt-space-xs">
+          <a
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm px-space-xl py-space-md rounded-full bg-primary-container text-on-primary-container font-headline-sm text-headline-sm transition-all transform hover:scale-[1.02] shadow-[0_0_28px_rgba(0,242,254,0.45)] hover:shadow-[0_0_36px_rgba(0,242,254,0.7)]"
+            href="/contact"
+          >
+            <span class="material-symbols-outlined text-[24px]">bolt</span>
+            <span>Get Help Now</span>
+          </a>
+          <a
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-space-sm px-space-lg py-space-md rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-label-lg text-label-lg transition-all shadow-md"
+            href="#services"
+          >
+            <span>Explore Services</span>
+            <span class="material-symbols-outlined text-[20px]">expand_more</span>
+          </a>
+        </div>
+
+        <div class="mt-space-md pt-space-lg border-t border-white/[0.08] flex flex-wrap items-center justify-center gap-space-lg text-on-surface-variant font-label-sm text-label-sm uppercase">
+          <span class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-secondary-fixed-dim text-[16px]">check</span> Zero Subscription Lock-In
+          </span>
+          <span class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-primary-container text-[16px]">check</span> Pay-As-You-Go Rates
+          </span>
+          <span class="flex items-center gap-space-xs">
+            <span class="material-symbols-outlined text-tertiary-fixed text-[16px]">check</span> Direct Flatbed Dispatch
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. MOVING MARQUEE -->
+    <div class="w-full overflow-hidden bg-surface-container-low py-space-md relative shadow-[inset_0_1px_0_rgba(255,255,255,0.05),inset_0_-1px_0_rgba(255,255,255,0.05)] marquee-container">
+      <div class="inline-flex whitespace-nowrap motion-safe:animate-[marquee_24s_linear_infinite] hover:[animation-play-state:paused] items-center gap-space-xl">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <span class={`${i % 2 === 0 ? 'text-primary-container drop-shadow-[0_0_8px_rgba(0,242,254,0.4)]' : 'text-secondary-fixed-dim drop-shadow-[0_0_8px_rgba(0,255,135,0.4)]'} font-headline-md text-headline-md uppercase tracking-wider`}>
+            24/7 SUPPORT • VEHICLE RECOVERY • JUMP START • MOBILE TYRES • RAPID DISPATCH • DIRECT DISPATCH •
+          </span>
+        ))}
+      </div>
+    </div>
+
+    <!-- 3. SERVICES TEASER -->
+    <section class="relative w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin py-space-2xl z-10" id="services">
+      <div class="flex flex-wrap items-end justify-between gap-space-md mb-space-xl">
+        <div>
+          <span class="text-primary-container font-label-sm text-label-sm uppercase tracking-widest">Core Breakdown Capabilities</span>
+          <h2 class="text-on-surface font-headline-lg text-headline-lg">Three Services. One Number To Call.</h2>
+        </div>
+        <a class="group inline-flex items-center gap-space-xs text-primary font-label-lg text-label-lg hover:text-primary-container transition-colors" href="/services">
+          <span>View All Services</span>
+          <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+        {services.map((service) => (
+          <a href="/services" class="group relative flex flex-col gap-space-md p-space-lg rounded-xl bg-surface-container hover:bg-surface-container-high transition-all duration-300 shadow-xl overflow-hidden">
+            <div class={`absolute -right-10 -top-10 w-40 h-40 rounded-full ${service.glow} blur-3xl pointer-events-none`}></div>
+            <div class="relative z-10 flex items-center justify-between">
+              <div class={`w-12 h-12 rounded-lg bg-surface-container-high flex items-center justify-center ${service.text}`}>
+                <span class="material-symbols-outlined text-[26px]">{service.icon}</span>
+              </div>
+              <span class="text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">{service.tag}</span>
+            </div>
+            <div class="relative z-10">
+              <h3 class={`text-on-surface font-headline-md text-headline-md mb-space-xs ${service.hoverText} transition-colors`}>{service.title}</h3>
+              <p class="text-on-surface-variant font-body-sm text-body-sm">{service.desc}</p>
+            </div>
+            <div class="relative z-10 pt-space-sm mt-auto flex items-center gap-space-xs font-label-lg text-label-lg text-primary">
+              <span>Learn more</span>
+              <span class="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- 4. TRUST STATS -->
+    <section class="relative w-full px-gutter-sm lg:px-margin py-space-xl z-10">
+      <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-gutter rounded-2xl bg-surface-container-low p-space-lg lg:p-space-xl shadow-xl">
+        {trustStats.map((stat, i) => (
+          <div class={`p-space-md ${i > 0 ? 'md:border-l border-white/[0.08]' : ''} text-center md:text-left`}>
+            <div class="font-metric-mono text-headline-lg text-on-surface mb-space-xs">{stat.value}</div>
+            <div class="w-12 h-px bg-primary-container/60 my-space-xs mx-auto md:mx-0"></div>
+            <div class="text-on-surface font-headline-sm text-headline-sm">{stat.label}</div>
+            <p class="text-on-surface-variant font-body-sm text-body-sm mt-space-xs">{stat.desc}</p>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. HOW IT WORKS -->
+    <section class="relative w-full px-gutter-sm lg:px-margin py-space-2xl z-10">
+      <div class="max-w-7xl mx-auto flex flex-col gap-space-xl">
+        <div class="text-center max-w-2xl mx-auto flex flex-col gap-space-xs">
+          <span class="text-primary-container font-label-sm text-label-sm uppercase tracking-widest">Streamlined Resolution</span>
+          <h2 class="text-on-surface font-headline-lg text-headline-lg">How It Works</h2>
+          <p class="text-on-surface-variant font-body-md text-body-md">From stranded motorist to secure onwards journey in four simple stages.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+          {steps.map((step) => (
+            <div class="flex flex-col p-space-lg rounded-xl bg-surface-container shadow-xl">
+              <div class="flex items-center justify-between mb-space-md">
+                <span class="text-primary-container font-metric-mono text-headline-sm">{step.num}</span>
+                <span class="material-symbols-outlined text-primary text-[24px]">{step.icon}</span>
+              </div>
+              <h3 class="text-on-surface font-headline-sm text-headline-sm mb-space-xs">{step.title}</h3>
+              <p class="text-on-surface-variant font-body-sm text-body-sm leading-relaxed">{step.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. NIGHT & DAY IMAGE STATEMENT -->
+    <section class="relative w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin py-space-2xl z-10">
+      <div class="relative w-full rounded-2xl overflow-hidden shadow-2xl bg-surface-container">
+        <div class="relative w-full h-[420px] md:h-[540px]">
+          <img
+            src="https://lh3.googleusercontent.com/aida/AEtjO1UWzc6tC2nEOItlLOwM-M9pbhJPdaRsEYi0DB7UNtHR0yipbGgC7jlEeNizVfIzfoRG0sqaAV2z01mpfPtKGY8JMJ3B6JwxYL67ZOc8ZpfUtlf3VfGO_X-Hwfiu7WyvniIW44wQewbljFjeagGeFrs7v7YornamfbsvSCd3SmAFDtvitDigqO44IVJ2HPWVg5nnNopMVE_bbdwK9gOq2ZATDOKbdKZE1QzaT6eS5xW8uXzGnddF_-NlaLfI"
+            alt="Recovery operator working roadside on a British motorway at twilight, illuminated by amber warning beacons."
+            width="1600"
+            height="900"
+            loading="lazy"
+            decoding="async"
+            class="absolute inset-0 w-full h-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-r from-surface-container-lowest via-surface-container-lowest/70 to-transparent"></div>
+          <div class="absolute inset-0 p-space-lg sm:p-space-2xl flex flex-col justify-center max-w-2xl z-10">
+            <div class="inline-flex items-center gap-space-xs text-secondary-fixed-dim font-label-sm text-label-sm uppercase tracking-widest mb-space-md">
+              <span class="material-symbols-outlined text-[18px] animate-pulse">podcasts</span>
+              <span>Night & Day Reliability</span>
+            </div>
+            <h2 class="text-on-surface font-headline-lg text-headline-lg mb-space-md">
+              Roadside Problems Don't Follow Business Hours. <span class="text-primary-container">Neither Do We.</span>
+            </h2>
+            <p class="text-on-surface-variant font-body-md text-body-md mb-space-lg">
+              When you call Auto Assist 24/7, you connect with an authorized British dispatch coordinator ready to deploy immediate assistance to your exact coordinates.
+            </p>
+            <div class="flex flex-wrap items-center gap-space-md">
+              <a class="inline-flex items-center justify-center px-space-lg py-space-sm rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_0_20px_rgba(0,242,254,0.4)] hover:shadow-[0_0_28px_rgba(0,242,254,0.6)] transition-all" href="/contact">
+                Contact Auto Assist 24/7
+              </a>
+              <a class="inline-flex items-center gap-space-xs px-space-lg py-space-sm rounded-full bg-surface-container-high text-on-surface font-label-lg text-label-lg hover:bg-surface-container-highest transition-all" href="tel:0800247999">
+                <span class="material-symbols-outlined text-[18px] text-primary-container">call</span>
+                <span>Emergency 0800 247 999</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. REVIEWS -->
+    <section class="relative w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin py-space-2xl z-10 overflow-hidden">
+      <div class="flex items-center justify-between mb-space-lg">
+        <div>
+          <span class="text-primary-container font-label-sm text-label-sm uppercase tracking-widest">Driver Experiences</span>
+          <h2 class="text-on-surface font-headline-lg text-headline-lg">Verified Incident Feedback</h2>
+        </div>
+        <div class="hidden sm:flex items-center gap-space-xs">
+          <button id="review-prev" type="button" aria-label="Previous review" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary-container transition-all">
+            <span class="material-symbols-outlined text-[20px]">chevron_left</span>
+          </button>
+          <button id="review-next" type="button" aria-label="Next review" class="w-10 h-10 rounded-full bg-surface-container-low flex items-center justify-center text-on-surface-variant hover:text-primary-container transition-all">
+            <span class="material-symbols-outlined text-[20px]">chevron_right</span>
+          </button>
+        </div>
+      </div>
+
+      <div id="review-track" class="flex gap-gutter overflow-x-auto pb-space-md scrollbar-none snap-x">
+        {reviews.map((review) => (
+          <div class="min-w-[320px] sm:min-w-[420px] p-space-lg rounded-xl bg-surface-container shadow-xl snap-start flex flex-col justify-between">
+            <div>
+              <div class={`flex items-center gap-1 ${review.text} mb-space-md`}>
+                {Array.from({ length: 5 }).map(() => (
+                  <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+                ))}
+              </div>
+              <p class="text-on-surface-variant font-body-md text-body-md leading-relaxed mb-space-lg">{review.quote}</p>
+            </div>
+            <div class="flex items-center justify-between pt-space-md border-t border-white/[0.08] font-label-sm text-label-sm">
+              <span class="text-on-surface font-medium">{review.name}</span>
+              <span class={review.text}>{review.meta}</span>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 8. FINAL CTA -->
+    <section class="relative w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin pt-space-xl pb-space-2xl z-10">
+      <div class="relative p-space-xl md:p-space-2xl rounded-2xl bg-surface-container-low shadow-2xl overflow-hidden text-center flex flex-col items-center">
+        <div class="pointer-events-none absolute -bottom-24 left-1/2 -translate-x-1/2 w-96 h-96 bg-primary-container/10 rounded-full blur-3xl"></div>
+        <span class="px-space-md py-space-xs rounded-full bg-surface-container text-primary-container font-label-sm text-label-sm uppercase tracking-widest mb-space-sm">
+          24/7 UK CONTROLLERS ON CALL
+        </span>
+        <h2 class="text-on-surface font-headline-lg text-headline-lg max-w-2xl mb-space-xs">Let's Get You Moving.</h2>
+        <p class="text-on-surface-variant font-body-lg text-body-lg max-w-xl mb-space-xl">
+          Enter breakdown coordinates or call our direct emergency operator desk. Live driver allocation begins immediately.
+        </p>
+        <div class="flex flex-col sm:flex-row items-center gap-space-md w-full sm:w-auto">
+          <a
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-space-xs px-space-xl py-space-sm rounded-full bg-primary-container text-on-primary-container font-label-lg text-label-lg shadow-[0_0_24px_rgba(0,242,254,0.5)] hover:shadow-[0_0_36px_rgba(0,242,254,0.8)] transition-all transform hover:scale-105"
+            href="tel:0800247999"
+          >
+            <span class="material-symbols-outlined text-[20px]">call</span>
+            <span>Call 0800 247 999</span>
+          </a>
+          <a
+            class="w-full sm:w-auto inline-flex items-center justify-center px-space-xl py-space-sm rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-label-lg text-label-lg transition-colors"
+            href="/contact"
+          >
+            Request Assistance Online
+          </a>
+        </div>
+      </div>
+    </section>
+  </div>
 </Layout>
+
+<style>
+  @keyframes marquee {
+    0% {
+      transform: translateX(0%);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+</style>
+
+<script>
+  const track = document.getElementById('review-track');
+  document.getElementById('review-prev')?.addEventListener('click', () => {
+    track?.scrollBy({ left: -380, behavior: 'smooth' });
+  });
+  document.getElementById('review-next')?.addEventListener('click', () => {
+    track?.scrollBy({ left: 380, behavior: 'smooth' });
+  });
+</script>
