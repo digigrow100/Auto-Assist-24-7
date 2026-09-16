@@ -124,17 +124,6 @@ const reviews = [
       </div>
     </section>
 
-    <!-- 2. MOVING MARQUEE -->
-    <div class="w-full overflow-hidden bg-surface-container-low py-space-md relative shadow-[inset_0_1px_0_rgba(255,255,255,0.05),inset_0_-1px_0_rgba(255,255,255,0.05)] marquee-container">
-      <div class="inline-flex whitespace-nowrap motion-safe:animate-[marquee_24s_linear_infinite] hover:[animation-play-state:paused] items-center gap-space-xl">
-        {Array.from({ length: 4 }).map((_, i) => (
-          <span class={`${i % 2 === 0 ? 'text-primary-container drop-shadow-[0_0_8px_rgba(0,242,254,0.4)]' : 'text-secondary-fixed-dim drop-shadow-[0_0_8px_rgba(0,255,135,0.4)]'} font-headline-md text-headline-md uppercase tracking-wider`}>
-            24/7 SUPPORT • VEHICLE RECOVERY • JUMP START • MOBILE TYRES • RAPID DISPATCH • DIRECT DISPATCH •
-          </span>
-        ))}
-      </div>
-    </div>
-
     <!-- 3. SERVICES TEASER -->
     <section class="relative w-full max-w-7xl mx-auto px-gutter-sm lg:px-margin py-space-2xl z-10" id="services">
       <div class="flex flex-wrap items-end justify-between gap-space-md mb-space-xl">
@@ -316,17 +305,6 @@ const reviews = [
     </section>
   </div>
 </Layout>
-
-<style>
-  @keyframes marquee {
-    0% {
-      transform: translateX(0%);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-</style>
 
 <script>
   const track = document.getElementById('review-track');
