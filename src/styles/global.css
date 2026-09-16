@@ -18,12 +18,32 @@
   html {
     color-scheme: dark;
     scroll-behavior: smooth;
+    /* Belt-and-braces: nothing on this site should ever need horizontal
+       scroll, so guard against any future overflow regression. */
+    overflow-x: hidden;
   }
 
   body {
     min-height: 100vh;
     overscroll-behavior: none;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* Material Symbols renders as a ligature word (e.g. "call") until the
+     icon font loads. Without a fixed box, that fallback text can be far
+     wider than the icon and blow out a flex row's layout on slow
+     connections. Clip it to the intended icon size so layout never
+     shifts or overflows during font load. */
+  .material-symbols-outlined {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1em;
+    height: 1em;
+    overflow: hidden;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   main > :first-child {
