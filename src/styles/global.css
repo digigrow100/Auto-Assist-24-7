@@ -19,8 +19,11 @@
     color-scheme: dark;
     scroll-behavior: smooth;
     /* Belt-and-braces: nothing on this site should ever need horizontal
-       scroll, so guard against any future overflow regression. */
+       scroll, so guard against any future overflow regression. Setting
+       overflow-y explicitly too avoids a Safari/iOS quirk where only
+       declaring overflow-x can end up blocking vertical scroll. */
     overflow-x: hidden;
+    overflow-y: auto;
   }
 
   body {
@@ -28,6 +31,7 @@
     overscroll-behavior: none;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    overflow-y: auto;
   }
 
   /* Material Symbols renders as a ligature word (e.g. "call") until the
